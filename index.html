@@ -1,44 +1,21 @@
 <!DOCTYPE html>
 <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script type="text/javascript">
-        var app = {
-            coords: [],
-            initialize: function() {
-                app.getData();
-            },
-            getData: function() {
-                $.ajax({
-                    url: 'http://api.open-notify.org/iss-now.json',
-                    type: 'GET',
-                    error: function(err) {
-                        console.log(err);
-                    },
-                    success: function(data) {
-                        console.log(data);
-                        console.log(data['iss_position']);
-                        //console.log("latitude: " + data["iss_position"]["latitude"]);
-                        //console.log("longitude: " + data["iss_position"]["longitude"]);
-                        app.coords[0] = data["iss_position"]["latitude"];
-                        app.coords[1] = data["iss_position"]["longitude"];
-
-                
-                    }
-                });
-              
-            }
-        };
-        function startApp() {
-            app.initialize();
-        }
-        function appendData() {
-            let innertxt = "<p>Latitude: " + app.coords[0] + ", Longitude: " + app.coords[1] + "</p>";
-            let holder = document.createElement("div");
-            holder.id = 'holder';
-            holder.innerHTML = innertxt;
-        }
+    <script src="api_script.js">
     </script>
+    <style type="text/css">
+
+    </style>
 </head>
-<body onload="startApp()">
-   
+<body onload=startApp()>
+  <header>
+    <div class="head">
+      <h1>ISS Position Tracker</h1>
+      <h2>Data will be updated every 20 seconds!</h2>
+    </div>
+  </header>
+
+  <div id="holder">
+
+  </div>
 </body>
